@@ -31,35 +31,36 @@ function randomInRange(min, max) {
 }
 
 
-let container = document.getElementById('root'); // link to sales.html
+let container = document.getElementById('salesData'); // link to sales.html
 
 function render(store) {   //how to copy coding from seattle to others, need to take out hard code
 
-    // need an article per cookie stand
+    // article per cookie stand
     let cookieStandArticle = document.createElement('article');
     container.appendChild(cookieStandArticle);
 
     let heading = document.createElement('h2');
     cookieStandArticle.appendChild(heading);
-    heading.textContent = seattle.location;
+    heading.textContent = store.location;
 
     let hoursList = document.createElement('ul');
     cookieStandArticle.appendChild(hoursList);
 
     let totalSold = 0;
 
-    for (let i = 0; i < seattle.sales.length; i++) {
+    for (let i = 0; i < store.sales.length; i++) {
         let salesItem = document.createElement('li');
         hoursList.appendChild(salesItem);
-        let cookiesSoldThisHour = seattle.sales[i];
-        let salesInfo = `${hours[i]}: ${seattle.sales[i]} cookies`;
+        let cookiesSoldThisHour = store.sales[i];
+        let salesInfo = `${hours[i]}: ${store.sales[i]} cookies`;
         salesItem.textContent = salesInfo
+        totalSold = totalSold + store.sales[i];
     }
 
     // add total line
     const totalItem = document.createElement('li');
     hoursList.appendChild(totalItem);
-    const totalInfo = `Total: ${hoursList} cookies sold`; // need to find value for "${hoursList}"
+    const totalInfo = `Total: ${totalSold} cookies sold`; // need to find value for "${hoursList}"
     totalItem.textContent = totalInfo;
 }
 
@@ -67,53 +68,60 @@ render(seattle);
 
 
 const tokyo = {
-    minCustomer: 3,
-    maxCustomer: 24,
+    location: 'Tokyo',
+    minCustomers: 3,
+    maxCustomers: 24,
     avgCookiesSale: 1.2,
     sales: [],
     estimate: function () {
         this.sales = estimateSales(this);
     },
 }
- 
-render(tokyo);
+
 tokyo.estimate();
+render(tokyo);
 
 
 const dubai = {
-    minCustomer: 11,
-    maxCustomer: 38,
+    location: 'Dubai',
+    minCustomers: 11,
+    maxCustomers: 38,
     avgCookiesSale: 3.7,
     sales: [],
     estimate: function () {
         this.sales = estimateSales(this);
     },
 }
-render(dubai);
+
 dubai.estimate();
+render(dubai);
 
 
 const paris = {
-    minCustomer: 20,
-    maxCustomer: 38,
+    location: 'Paris',
+    minCustomers: 20,
+    maxCustomers: 38,
     avgCookiesSale: 2.3,
     sales: [],
     estimate: function () {
         this.sales = estimateSales(this);
     },
 }
-render(paris);
+
 paris.estimate();
+render(paris);
 
 
 const lima = {
-    minCustomer: 2,
-    maxCustomer: 16,
+    location: 'Lima',
+    minCustomers: 2,
+    maxCustomers: 16,
     avgCookiesSale: 4.6,
     sales: [],
     estimate: function () {
         this.sales = estimateSales(this);
     },
 }
-render(lima);
+
 lima.estimate();
+render(lima);
