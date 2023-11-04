@@ -8,7 +8,7 @@ function CookieStand(location, minCustomers, maxCustomers, avgCookiesSale) {
     this.sales = this.estimateSales();
 }
 
-CookieStand.prototype.estimateSales = function() {
+CookieStand.prototype.estimateSales = function () {
     const sales = [];
     for (let i = 0; i < hours.length; i++) {
         const numCustomers = randomInRange(this.minCustomers, this.maxCustomers);
@@ -22,29 +22,90 @@ function randomInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-const seattle = new CookieStand('Seattle', 23, 65, 6.3); // lab 7 here and above
-const tokyo = new CookieStand('Tokyo', 23, 65, 6.3);
-console.log(tokyo);
+const seattle = new CookieStand('Seattle', 23, 65, 6.3);
+const tokyo = new CookieStand('Tokyo', 3, 24, 1.2);
+const dubai = new CookieStand('Dubai', 11, 38, 3.7);
+const paris = new CookieStand('Paris', 20, 38, 2.3);
+const lima = new CookieStand('Lima', 2, 16, 4.6);
 
 console.log(seattle);
+console.log(tokyo);
+console.log(dubai);
+console.log(paris);
+console.log(lima);
 
+const container = document.getElementById('root');
 
+const tableElem = document.createElement('table');
+container.appendChild(tableElem);
 
+CookieStand.prototype.render = function () {
 
+    const salesData = document.createElement('tr');
+    tableElem.appendChild(salesData);
 
+    const salesLocation = document.createElement('td');
+    salesData.appendChild(salesLocation);
+    salesLocation.textContent = this.location;
 
+    for (let i = 0; i < this.sales.length; i++) {
+        const hourlySalesCell = document.createElement('td');
+        salesData.appendChild(hourlySalesCell);
+        hourlySalesCell.textContent = this.sales[i];
+    }
 
+    /*const dataRow = document.createElement('tr');
+    tableElem.appendChild(dataRow);
 
+    const storeDataCell = document.createElement('td');
+    dataRow.appendChild(storeDataCell);
+    storeDataCell.textContent = this.location;
 
+    return tableElem;*/
+}
 
+function renderTableHeader() {
 
+    const tableHeader = document.createElement('tr');
+    tableElem.appendChild(tableHeader);
 
+    const headerCell = document.createElement('th');
+    tableHeader.appendChild(headerCell);
+    headerCell.textContent = ''; // leaves blank spot at top left
 
+    for (let i = 0; i < hours.length; i++) {
+        const headerData = document.createElement('th');
+        tableHeader.appendChild(headerData);
+        headerData.textContent = hours[i];
+    }
+}
 
+function renderTableFooter() {
 
+    const tableFooter = document.createElement('tr');
+    tableElem.appendChild(tableFooter);
 
+    const footerCell = document.createElement('td');
+    tableFooter.appendChild(footerCell);
+    footerCell.textContent = 'Total';
 
+    for (let i = 0; i < estimateSales; i++) {
+        const footerData = document.createElement('tfoot');
+        tableFooter.appendChild(footerData);
+        footerData.textContent = 'need data';
+    }
 
+}
+
+renderTableHeader();
+
+seattle.render();
+tokyo.render();
+dubai.render();
+paris.render();
+lima.render();
+
+renderTableFooter();
 
 
 
