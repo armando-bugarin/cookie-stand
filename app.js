@@ -28,11 +28,6 @@ const dubai = new CookieStand('Dubai', 11, 38, 3.7);
 const paris = new CookieStand('Paris', 20, 38, 2.3);
 const lima = new CookieStand('Lima', 2, 16, 4.6);
 
-console.log(seattle);
-console.log(tokyo);
-console.log(dubai);
-console.log(paris);
-console.log(lima);
 
 const container = document.getElementById('root');
 
@@ -48,20 +43,18 @@ CookieStand.prototype.render = function () {
     salesData.appendChild(salesLocation);
     salesLocation.textContent = this.location;
 
+    let dailyLocationTotal = 0; // 
+
     for (let i = 0; i < this.sales.length; i++) {
         const hourlySalesCell = document.createElement('td');
         salesData.appendChild(hourlySalesCell);
         hourlySalesCell.textContent = this.sales[i];
+        dailyLocationTotal += this.sales[i]; // gives daily total per location
     }
 
-    /*const dataRow = document.createElement('tr');
-    tableElem.appendChild(dataRow);
-
-    const storeDataCell = document.createElement('td');
-    dataRow.appendChild(storeDataCell);
-    storeDataCell.textContent = this.location;
-
-    return tableElem;*/
+    const dailyTotal = document.createElement('td'); // gives daily total per location
+    salesData.appendChild(dailyTotal);
+    dailyTotal.textContent = dailyLocationTotal;
 }
 
 function renderTableHeader() {
@@ -71,13 +64,17 @@ function renderTableHeader() {
 
     const headerCell = document.createElement('th');
     tableHeader.appendChild(headerCell);
-    headerCell.textContent = ''; // leaves blank spot at top left
+    headerCell.textContent = ''; // ' ' leaves blank spot at top left
 
     for (let i = 0; i < hours.length; i++) {
         const headerData = document.createElement('th');
         tableHeader.appendChild(headerData);
         headerData.textContent = hours[i];
     }
+
+    const dailyTotalHeader = document.createElement('th');
+    tableHeader.appendChild(dailyTotalHeader);
+    dailyTotalHeader.textContent = "Daily Location Total"
 }
 
 function renderTableFooter() {
@@ -89,12 +86,20 @@ function renderTableFooter() {
     tableFooter.appendChild(footerCell);
     footerCell.textContent = 'Total';
 
-    for (let i = 0; i < estimateSales; i++) {
-        const footerData = document.createElement('tfoot');
+    let dailyTotalAllLocations = 0; //
+
+    for (let i = 0; i < hours.length; i++) {
+        const totalSales = seattle.sales[i] + tokyo.sales[i] + dubai.sales[i] + paris.sales[i] + lima.sales[i];
+
+        const footerData = document.createElement('td');
         tableFooter.appendChild(footerData);
-        footerData.textContent = 'need data';
+        footerData.textContent = totalSales;
+        dailyTotalAllLocations = dailyTotalAllLocations + totalSales; // how to get daily total for all locations combined
     }
 
+    const dailyTotalFooter = document.createElement('td'); // daily total for all locations combined
+    tableFooter.appendChild(dailyTotalFooter);
+    dailyTotalFooter.textContent = dailyTotalAllLocations;
 }
 
 renderTableHeader();
@@ -107,8 +112,11 @@ lima.render();
 
 renderTableFooter();
 
-
-
+console.log(seattle);
+console.log(tokyo);
+console.log(dubai);
+console.log(paris);
+console.log(lima);
 
 
 
