@@ -22,11 +22,11 @@ function randomInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-const seattle = new CookieStand('Seattle', 23, 65, 6.3);
-const tokyo = new CookieStand('Tokyo', 3, 24, 1.2);
-const dubai = new CookieStand('Dubai', 11, 38, 3.7);
-const paris = new CookieStand('Paris', 20, 38, 2.3);
-const lima = new CookieStand('Lima', 2, 16, 4.6);
+let seattle = new CookieStand('Seattle', 23, 65, 6.3);
+let tokyo = new CookieStand('Tokyo', 3, 24, 1.2);
+let dubai = new CookieStand('Dubai', 11, 38, 3.7);
+let paris = new CookieStand('Paris', 20, 38, 2.3);
+let lima = new CookieStand('Lima', 2, 16, 4.6);
 
 
 const container = document.getElementById('root');
@@ -112,14 +112,64 @@ lima.render();
 
 renderTableFooter();
 
-console.log(seattle);
-console.log(tokyo);
-console.log(dubai);
-console.log(paris);
-console.log(lima);
+// lab 8 a, add location name, address, hours, and contact info of locations to index.html
 
+// function Locations(name, address, hoursOpen, contactInfo) {
+//     this.name = name;
+//     this.address = address;
+//     this.hoursOpen = hoursOpen;
+//     this.contactInfo = contactInfo;
+// }
 
+// const locations = [
+//     {
+//         name: 'Seattle',
+//         address: 'Pike Place Market, Seattle, WA',
+//         hoursOpen: '6 am - 8 pm',
+//         contactInfo: 'seattlesalmon@cookies.com'
+//     },
+//     {
+//         name: 'Tokyo',
+//         address: '123 Tokyo Avenue, Tokyo',
+//         hoursOpen: '6 am - 8 pm',
+//         contactInfo: 'tokyosalmon@cookies.com'
+//     },
+//     {
+//         name: 'Dubai',
+//         address: 'Inside the Dubai Mall, Dubai, U.A.E.',
+//         hoursOpen: '6 am - 8 pm',
+//         contactInfo: 'dubaisalmon@cookies.com'
+//     },
+//     {
+//         name: 'Paris',
+//         address: '1234 Eifel Tower Ave, Paris',
+//         hoursOpen: '6 am - 8 pm',
+//         contactInfo: 'parissalmon@cookies.com'
+//     },
+//     {
+//         name: 'Lima',
+//         address: '5000 Lima Ave, Lima, Peru',
+//         hoursOpen: '6 am - 8 pm',
+//         contactInfo: 'limasalmon@cookies.com'
+//     },
+// ];
 
+// function renderLocationInfo() {
+
+//     let container = document.getElementById('homepage');
+
+//     let listElem = document.createElement('ul');
+//     container.appendChild(listElem);
+
+//     for (i = 0; i < locations.length; i++) {
+//         let listData = document.createElement('td');
+//         listElem.appendChild(listData);
+//         allLocationInfo = locations[i];
+//     };
+
+// }
+
+// renderLocationInfo();
 
 
 
